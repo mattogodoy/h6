@@ -14,9 +14,13 @@ You will have to make a specific cable that connects a USB port from your comput
 
 You will need:
 - An FTDI USB to TTL converter:
+
 ![FTDI USB to TTL](images/FT232RL-FTDI-USB-to-TTL.jpeg?raw=true "FTDI USB to TTL")
+
 - A 2.5mm jack screw terminal:
+
 ![2.5mm jack screw terminal](images/2-5mm-Stereo-Jack.jpeg?raw=true "2.5mm jack screw terminal")
+
 - A simple 3 wire cable
 
 All of these components are widely available to buy online and the overall cost is less than 5€.

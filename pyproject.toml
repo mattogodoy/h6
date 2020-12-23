@@ -10,7 +10,7 @@ repository = "https://github.com/mattogodoy/h6/"
 keywords = ["zoom", "h6", "remote"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

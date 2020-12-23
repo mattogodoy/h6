@@ -2,17 +2,18 @@
 
 A Python library to emulate a Zoom H6 recorder remote control
 
-
 ## Introduction
 
 This library allows you to control your Zoom H6 recorder from your computer using an USB to TTL adapter.
 For this, you will need a few components to make a specific cable, but it's quite simple.
-
+*Requires Python 3.6 or newer*
 
 ## Cable
+
 You will have to make a specific cable that connects a USB port from your computer to the Zoom H6 remote control port, but fear not. It's actually really simple.
 
 You will need:
+
 - An FTDI USB to TTL converter:
 
 ![FTDI USB to TTL](images/FT232RL-FTDI-USB-to-TTL.jpeg?raw=true "FTDI USB to TTL")
@@ -27,7 +28,6 @@ All of these components are widely available to buy online and the overall cost 
 
 Once you have all of the components, the wiring is also quite simple:
 
-
 | FTDI adapter | 2.5mm jack |
 |--------------|------------|
 | Rx           | L          |
@@ -38,12 +38,11 @@ Once you have all of the components, the wiring is also quite simple:
 
 **IMPORTANT**: Make sure that the FTDI USB to TTL adapter jumper is set to **3.3v** before using the cable. Leaving it at 5v could damage your recorder.
 
-
 ## Installation
+
 Simply install the library using `pip`:
 
 `pip install h6`
-
 
 ## Usage
 
@@ -78,7 +77,6 @@ The `initialize()` function executes a specific handshake expected by the Zoom H
 
 You can send any valid command to the recorder. Keep reading for a list with all the available commands.
 
-
 ## Commands
 
 The complete list of available commands is:
@@ -98,7 +96,6 @@ The complete list of available commands is:
 | ch4               | Toggle Channel 4  |
 | right             | Right             |
 | left              | Left              |
-
 
 ## Changelog
 

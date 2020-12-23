@@ -6,7 +6,6 @@ A Python library to emulate a Zoom H6 recorder remote control
 
 This library allows you to control your Zoom H6 recorder from your computer using an USB to TTL adapter.
 For this, you will need a few components to make a specific cable, but it's quite simple.
-*Requires Python 3.6 or newer*
 
 ## Cable
 
@@ -45,6 +44,18 @@ Simply install the library using `pip`:
 `pip install h6`
 
 ## Usage
+
+You can include this library in your Python project or run it directly as a CLI tool.
+
+### CLI
+
+To execute commands using your command line run:
+
+`h6 -p /dev/cu.usbserial-alcdut1 -c stop`
+
+You must specify the serial port using `-p` or `--port` and the command to send using `-c` or `--command`.
+
+### Importing the library
 
 Usage example:
 

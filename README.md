@@ -108,6 +108,12 @@ The complete list of available commands is:
 | right             | Right             |
 | left              | Left              |
 
+## Compatibility
+
+This library has only been tested with the **H6** model, but according to the Zoom support (see [#1](https://github.com/mattogodoy/h6/issues/1)) it should work with other models such as the **H4n** and the **H5**.
+
+If you get to try with any other model than the **H6**, please write your experience in that issue's comments.
+
 ## Changelog
 
 - **0.1.0**: Initial release

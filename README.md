@@ -105,9 +105,18 @@ The complete list of available commands is:
 | ch2               | Toggle Channel 2  |
 | ch3               | Toggle Channel 3  |
 | ch4               | Toggle Channel 4  |
-| right             | Right             |
-| left              | Left              |
+| chr               | Toggle R Channel  |
+| chl               | Toggle L Channel  |
 
 ## Changelog
 
-- **0.1.0**: Initial release
+- **0.1.1**:
+  - Added 3 seconds timeout to avoid infinite handshake
+  - Improved the way commands are sent
+  - Renamed L and R channels commands for consistency
+  - Improved error handling
+  - Updated README file
+  - Bumped version to 0.1.1
+
+- **0.1.0**
+  - Initial release

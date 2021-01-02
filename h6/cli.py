@@ -26,8 +26,8 @@ def send_command(port, command):
     | ch2               | Toggle Channel 2  |
     | ch3               | Toggle Channel 3  |
     | ch4               | Toggle Channel 4  |
-    | right             | Right             |
-    | left              | Left              |
+    | chr               | Toggle R Channel  |
+    | chl               | Toggle L Channel  |
     """
 
     print(f'Initializing recorder in port "{port}"')
@@ -37,10 +37,10 @@ def send_command(port, command):
         print('Shaking hands')
         recorder.initialize()
 
-        print('Sending command')
-        recorder.send(command)
-
-        print('Command sent')
+        if recorder.is_handshake_complete:
+            print('Sending command')
+            recorder.send(command)
+            print('Command sent')
 
 
 if __name__ =='__main__':

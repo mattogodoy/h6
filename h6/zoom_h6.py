@@ -1,5 +1,5 @@
 import serial
-from time import sleep
+import time
 
 
 class ZoomH6:
@@ -18,8 +18,8 @@ class ZoomH6:
         'ch3':              bytearray([0b10000000, 0b00010000]),
         'ch2':              bytearray([0b10000000, 0b00001000]),
         'ch1':              bytearray([0b10000000, 0b00000100]),
-        'right':            bytearray([0b10000000, 0b00000010]),
-        'left':             bytearray([0b10000000, 0b00000001]),
+        'chr':              bytearray([0b10000000, 0b00000010]),
+        'chl':              bytearray([0b10000000, 0b00000001]),
         'release_button':   bytearray([0b10000000, 0b00000000])
     }
 
@@ -31,9 +31,11 @@ class ZoomH6:
             self.s.timeout = 0.032
             self.is_initialized = True
         except serial.serialutil.SerialException:
-            print(f'[ERROR] Serial port "{serial_port}" not found')
+            print(f'[ERROR] Connecting to serial port "{serial_port}"')
 
     def initialize(self) -> None:
+        timeout = time.time() + 3  # Set 3 seconds timeout
+
         if self.is_initialized and not self.is_handshake_complete:
             while not self.is_handshake_complete:
                 self.s.write(b'\00')
@@ -51,8 +53,13 @@ class ZoomH6:
                                 self.s.write(b'\x80\x80')
                                 self.is_handshake_complete = True
 
-            sleep(0.1)
-            return True
+                # Check elapsed time for timeout
+                if time.time() > timeout:
+                    print('[ERROR] Handshake timeout')
+                    break
+
+            time.sleep(0.1)  # Give some time to the recorder to process handshake
+            return self.is_handshake_complete
         else:
             print('[ERROR] Recorder not is_initialized')
             return False
@@ -67,12 +74,27 @@ class ZoomH6:
             return False
 
         if self.is_handshake_complete:
-            self.s.write(self.commands[command])
-            self.s.write(self.commands['release_button'])
+            self.write(command)
+
+            # Special case for volume keys: The first press activates the
+            # volume dialog and the rest actually change the volume value
+            if command == 'vol_down':
+                self.write(command)
+            elif command == 'vol_up':
+                # For some reason vol_up requires 1 more click to work
+                self.write(command)
+                self.write(command)
+
             return True
         else:
             print('[ERROR] Recorder not is_initialized')
             return False
+
+    def write(self, command: str) -> None:
+        self.s.write(self.commands[command])
+        res = self.s.readline()
+        self.s.write(self.commands['release_button'])
+        res = self.s.readline()
 
     def rec(self) -> None:
         self.send('record')

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "h6"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Python library to emulate a Zoom H6 recorder remote control"
 authors = ["Matias Godoy <mattogodoy@gmail.com>"]
 license = "MIT"
